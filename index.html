@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Orbitron:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="assets/js/script.js" defer></script>
+    <title>Le 21</title>
+  </head>
+  <body>
+    <main class="game-board">
+      <section class="form-page">
+        <h1><i>le 21</i></h1>
+        <form name="gameForm" class="form-game" method="POST">
+          <h2>Sélectionnez le nombre de joueurs:</h2>
+          <input type="number" min="2" max="8" name="nPlayers" autofocus />
+          <span class="error"></span>
+          <button class="start-game" name="startGame">Lancer la partie!</button>
+        </form>
+      </section>
+      <div class="new-game">
+        <div class="winners"></div>
+        <span>Rejouer</span>
+        <div class="totalGames"></div>
+      </div>
+    </main>
+  </body>
+</html>

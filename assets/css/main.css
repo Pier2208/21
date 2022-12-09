@@ -1,0 +1,374 @@
+/* BASE */
+
+:root {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+input + *,
+h1 + *,
+h2 + * {
+  margin-top: 1.5rem;
+}
+
+body {
+  line-height: 1.5;
+  background-color: #f1f1f1;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: #7cff71;
+  font-size: 3rem;
+}
+
+h2 {
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+}
+
+input,
+button.start-game {
+  padding: 1rem;
+  font-size: 1.3rem;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+
+input[type='number'] {
+  background-color: transparent;
+  background-color: #282828;
+  color: #7cff71;
+}
+
+.hidden {
+  display: none;
+}
+
+/* PAGE FORMULAIRE */
+.form-page {
+  position: absolute;
+  max-width: 100vw;
+  max-height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1111;
+  background-image: url('../img/formpage.jpeg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.translatePageDown {
+  transform: translateY(100%);
+  transition: all 400ms ease-in-out;
+}
+
+.translatePageUp {
+  transform: translateY(0%);
+  transition: all 400ms ease-in-out;
+}
+
+.form-game {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  padding: 1.5rem;
+  border-radius: 20px;
+  max-width: 40%;
+}
+
+button.start-game {
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 4px 4px 12px rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* BOARD GAME */
+.game-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-image: url('../img/NQHESK.jpeg');
+  background-position: center;
+  background-size: cover;
+}
+
+/* CARTE JOUEUR */
+.wPlayer {
+  position: relative;
+  margin-right: 6rem;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  animation: append-animate 0.5s ease-in-out;
+  pointer-events: none;
+  transition: filter 250ms ease-in;
+  filter: grayscale();
+}
+
+.active {
+  filter: grayscale(0);
+  pointer-events: initial;
+}
+
+.active .player__avatar {
+  animation: pulse 2s infinite;
+}
+
+.player {
+  width: 335px;
+  height: 322px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.player__avatar {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1), -4px -4px 12px rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: -70px;
+  left: -50px;
+  z-index: 11;
+}
+
+.player__name {
+  background-color: #fff;
+  border-radius: 15px;
+  align-self: flex-start;
+  padding: 0.2rem 1.5rem;
+  overflow: hidden;
+  position: absolute;
+  top: -50px;
+  right: 0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.4rem;
+}
+
+.player__board {
+  width: 290px;
+  height: 200px;
+  background: linear-gradient(#2f7206, #317904);
+  border-radius: 15px;
+  border: 4px solid #fff;
+  padding: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.5rem;
+}
+
+.player__board div:first-of-type {
+  margin-left: calc(20% + 0.5rem);
+}
+
+.player__score {
+  width: 100%;
+  border-radius: 15px;
+  background-color: #282828;
+  color: #7cff71;
+  text-align: right;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  border: 4px solid #fff;
+}
+
+.player__actions {
+  display: flex;
+  margin-right: -0.5rem;
+}
+
+.player__actions > * {
+  width: calc(100% / 2);
+  margin-right: 0.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  padding: 0.4rem 1rem;
+  border-radius: 15px;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.player__actions--play {
+  background-color: #54ba58;
+}
+
+.player__actions--stop {
+  background-color: #e33737;
+}
+
+/* JEU DE CARTES */
+.card {
+  height: 69px;
+  width: calc(100% / 5);
+  margin-right: 0.5rem;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.holding {
+  pointer-events: none;
+  transition: filter 500ms ease-in 500ms;
+  filter: grayscale(0);
+  opacity: 0.7;
+}
+
+.out {
+  pointer-events: none;
+  transition: filter 500ms ease-in 500ms;
+  filter: grayscale();
+}
+
+.out-msg {
+  position: absolute;
+  width: 350px;
+  height: 252px;
+  top: 0;
+  left: -30px;
+  background: url('../img/boom.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 1;
+  z-index: 12;
+  transform: rotate(-25deg);
+  animation: append-message 0.5s ease-in-out;
+  opacity: 0.7;
+}
+
+.winners {
+  position: absolute;
+  left: 100px;
+  color: #7cff71;
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  word-spacing: 5px;
+}
+
+.winner {
+  transform: rotate(360deg) scale(1.2);
+  transition: all 400ms ease-in-out;
+  filter: grayscale(0);
+  pointer-events: none;
+  z-index: 111;
+}
+
+.new-game {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: black;
+  color: #7cff71;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 222;
+  text-transform: uppercase;
+  transform: translateY(200%);
+  transition: all 500ms ease-in-out;
+}
+
+.new-game > span {
+  border: 1px solid #7cff71;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 300ms ease-in-out;
+}
+
+.new-game > span:hover {
+  background-color: #7cff71;
+  color: black;
+}
+
+.show {
+  transform: translateY(0px);
+}
+
+.totalGames {
+  position: absolute;
+  right: 150px;
+  color: #7cff71;
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  word-spacing: 5px;
+}
+
+@keyframes append-message {
+  0% {
+    transform: scale(0) rotate(10deg);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.5) rotate(-25deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) rotate(-25deg);
+    opacity: 1;
+  }
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes append-animate {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
